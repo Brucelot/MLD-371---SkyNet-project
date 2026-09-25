@@ -31,5 +31,5 @@ Harvard Kennedy School course project with the Cambridge Fire Department.
 ## Project resources
 
 - [Cambridge Fire Department overview](Cambridge_Fire_Department_Overview.docx)
-- [Emergency management network map](network-map.html)
+- [Emergency management network map](02-background-brief/network-map.html)
 - [Original team and partner project page](Skynet%20-%20Cambridge%20Fire%20Department%20project%20-%20MLD%20371%20-%20AI-Civil%20Society.html)
