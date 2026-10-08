@@ -33,3 +33,7 @@ Harvard Kennedy School course project with the Cambridge Fire Department.
 - [Cambridge Fire Department overview](Cambridge_Fire_Department_Overview.docx)
 - [Emergency management network map](02-background-brief/network-map.html)
 - [Original team and partner project page](Skynet%20-%20Cambridge%20Fire%20Department%20project%20-%20MLD%20371%20-%20AI-Civil%20Society.html)
+
+## Images
+
+- [Purple coral photograph](assets/images/purple-coral.jpg) — Original uploaded image, stored in [assets/images](assets/images/).
