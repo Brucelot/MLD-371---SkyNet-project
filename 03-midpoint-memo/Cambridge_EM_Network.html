@@ -1,0 +1,108 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Explore Cambridge emergency-management agencies and community partners in an interactive relationship map."><title>Cambridge Emergency Management Network</title><style> :root{color-scheme:light;--foreground:#172c3d;--muted-foreground:#50677a;--card:#f5f8fa;--border:#ccd8df;--primary:#146a8a;--font-size-base:16px;--viz-series-1:#146a8a;--viz-series-2:#e3c48c;--viz-series-3:#478572;--viz-series-4:#889ec6}*{box-sizing:border-box}body{margin:0;background:#edf2f5;font-family:system-ui,sans-serif;color:var(--foreground)}header{background:#122f42;color:white;padding:18px max(24px,calc((100vw - 1280px)/2));font-size:13px;letter-spacing:.12em;text-transform:uppercase}main{max-width:1328px;margin:auto;padding:40px 24px}h1{font-size:clamp(27px,4vw,46px);line-height:1.12;letter-spacing:-.035em;margin:0 0 18px}#cambridge-em-network .sub{max-width:850px;font-size:16px;line-height:1.6}#cambridge-em-network .wrap{grid-template-columns:minmax(0,1fr) 290px;background:white;border:1px solid var(--border);padding:26px;border-radius:18px}#cambridge-em-network .detail{border-radius:12px;padding:22px;background:var(--card);border-top:4px solid var(--primary)}#cambridge-em-network .detail p{line-height:1.65}a{color:var(--primary);text-underline-offset:3px}.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:26px 0 18px}.controls label{font-weight:600;font-size:14px}select,button{font:inherit;min-height:44px;padding:8px 12px;border:1px solid #b3c4cf;border-radius:8px;background:white;color:var(--foreground)}button{cursor:pointer}select{max-width:100%}:focus-visible{outline:3px solid #d58e23;outline-offset:4px}.node:focus-visible rect{stroke:#d58e23;stroke-width:3}.node:hover rect{stroke:var(--primary);stroke-width:2}footer{font-size:12px;color:var(--muted-foreground);line-height:1.6;margin-top:22px}@media(max-width:850px){#cambridge-em-network .wrap{grid-template-columns:1fr;padding:16px}main{padding:26px 16px}.controls select{width:100%}#cambridge-em-network .canvas{overflow-x:auto}#cambridge-em-network svg{min-width:620px}#cambridge-em-network .detail{min-height:0}}</style></head><body><header>Cambridge, Massachusetts · Network explorer</header><main><div id="cambridge-em-network" aria-label="Network map of Cambridge, Massachusetts Emergency Management within the Fire Department's EPAC Office">
+  <style>
+    #cambridge-em-network{font-family:system-ui,sans-serif;color:var(--foreground);font-size:var(--font-size-base);line-height:1.35}
+    #cambridge-em-network .viz-head{margin-bottom:12px}
+    #cambridge-em-network h2{margin:0 0 4px;font-weight:500}
+    #cambridge-em-network .sub{color:var(--muted-foreground);font-size:14px}
+    #cambridge-em-network .wrap{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:14px;align-items:start}
+    #cambridge-em-network .canvas{min-width:0}
+    #cambridge-em-network svg{display:block;width:100%;height:auto;overflow:visible}
+    #cambridge-em-network .edge{stroke:var(--border);stroke-width:1.5;fill:none}
+    #cambridge-em-network .edge.direct{stroke:var(--viz-series-1);stroke-width:2}
+    #cambridge-em-network .edge.support{stroke:var(--viz-series-3);stroke-dasharray:6 5}
+    #cambridge-em-network .node{cursor:pointer}
+    #cambridge-em-network .node rect{fill:color-mix(in srgb,var(--card) 88%,var(--viz-series-2));stroke:var(--border);stroke-width:1.2;rx:10}
+    #cambridge-em-network .node.core rect{fill:color-mix(in srgb,var(--viz-series-1) 18%,var(--card));stroke:var(--viz-series-1);stroke-width:2}
+    #cambridge-em-network .node.external rect{fill:color-mix(in srgb,var(--viz-series-4) 12%,var(--card))}
+    #cambridge-em-network .node.selected rect{stroke:var(--primary);stroke-width:3}
+    #cambridge-em-network .node text{fill:var(--foreground);font-size:12px;pointer-events:none;text-anchor:middle}
+    #cambridge-em-network .node .kind{fill:var(--muted-foreground);font-size:10px}
+    #cambridge-em-network .detail{min-height:190px}
+    #cambridge-em-network .detail h3{margin:0 0 6px;font-weight:500}
+    #cambridge-em-network .detail p{margin:0 0 8px;color:var(--muted-foreground);font-size:14px}
+    #cambridge-em-network .detail a{color:var(--primary)}
+    #cambridge-em-network .legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:6px;color:var(--muted-foreground);font-size:12px}
+    #cambridge-em-network .key{display:inline-flex;align-items:center;gap:6px}
+    #cambridge-em-network .swatch{width:22px;border-top:2px solid var(--viz-series-1)}
+    #cambridge-em-network .swatch.dash{border-top-style:dashed;border-color:var(--viz-series-3)}
+    #cambridge-em-network .note{margin-top:10px;color:var(--muted-foreground);font-size:12px}
+    @media(max-width:700px){#cambridge-em-network .wrap{grid-template-columns:1fr}#cambridge-em-network .detail{min-height:0}}
+  </style>
+  <div class="viz-head">
+    <h1>Cambridge Emergency<br>Management Network</h1>
+    <div class="sub">Emergency Management sits within the Fire Department’s Emergency Preparedness and Coordination (EPAC) Office. Select a node to inspect its documented connection.</div>
+  </div>
+  <div class="controls"><label for="agency">Explore an agency or partner</label><select id="agency"></select><button id="reset" type="button">Reset to EPAC</button></div><div class="wrap">
+    <div class="canvas">
+      <svg viewBox="0 -85 760 670" role="group" aria-labelledby="cambridge-net-title cambridge-net-desc">
+        <title id="cambridge-net-title">Cambridge Emergency Management network</title>
+        <desc id="cambridge-net-desc">A relationship map centered on the Cambridge Fire Department's EPAC Office and Emergency Management division, connected to city, regional, institutional, and community partners.</desc>
+        <g aria-hidden="true">
+          <path class="edge direct" d="M380 260 L180 105"/><path class="edge direct" d="M380 260 L580 105"/>
+          <path class="edge direct" d="M380 260 L115 265"/><path class="edge direct" d="M380 260 L645 265"/>
+          <path class="edge direct" d="M380 260 L175 430"/><path class="edge direct" d="M380 260 L585 430"/>
+          <path class="edge support" d="M180 105 L380 -35"/><path class="edge support" d="M180 105 L580 -35"/>
+          <path class="edge support" d="M580 105 L645 265"/><path class="edge support" d="M175 430 L85 535"/>
+          <path class="edge support" d="M585 430 L675 535"/>
+        </g>
+        <g class="node core" data-node="epac" role="button" tabindex="0" aria-label="EPAC Office, central node">
+          <rect x="280" y="220" width="200" height="80"/><text x="380" y="248">EPAC Office</text><text x="380" y="267">Emergency Preparedness</text><text x="380" y="285">&amp; Coordination</text>
+        </g>
+        <g class="node" data-node="fire" role="button" tabindex="0" aria-label="Cambridge Fire Department">
+          <rect x="80" y="65" width="200" height="80"/><text x="180" y="96">Cambridge Fire</text><text x="180" y="114">Department</text><text class="kind" x="180" y="133">department / command</text>
+        </g>
+        <g class="node" data-node="police" role="button" tabindex="0" aria-label="Cambridge Police Department">
+          <rect x="480" y="65" width="200" height="80"/><text x="580" y="96">Cambridge Police</text><text x="580" y="114">Department</text><text class="kind" x="580" y="133">city operational partner</text>
+        </g>
+        <g class="node" data-node="public-health" role="button" tabindex="0" aria-label="Cambridge Public Health Department">
+          <rect x="15" y="225" width="200" height="80"/><text x="115" y="256">Public Health</text><text x="115" y="274">Department</text><text class="kind" x="115" y="293">city planning partner</text>
+        </g>
+        <g class="node" data-node="ecc" role="button" tabindex="0" aria-label="Emergency Communications Department">
+          <rect x="545" y="225" width="200" height="80"/><text x="645" y="256">Emergency</text><text x="645" y="274">Communications / 911</text><text class="kind" x="645" y="293">dispatch &amp; coordination</text>
+        </g>
+        <g class="node" data-node="dpw" role="button" tabindex="0" aria-label="Department of Public Works">
+          <rect x="75" y="390" width="200" height="80"/><text x="175" y="421">Public Works</text><text x="175" y="439">Department</text><text class="kind" x="175" y="458">hazard / recovery partner</text>
+        </g>
+        <g class="node external" data-node="lepc" role="button" tabindex="0" aria-label="Local Emergency Planning Committee">
+          <rect x="485" y="390" width="200" height="80"/><text x="585" y="421">Cambridge LEPC</text><text x="585" y="439">Local planning committee</text><text class="kind" x="585" y="458">chaired by EPAC</text>
+        </g>
+        <g class="node external" data-node="state-federal" transform="translate(0 -90)" role="button" tabindex="0" aria-label="MEMA and FEMA">
+          <rect x="300" y="15" width="160" height="60"/><text x="380" y="40">MEMA / FEMA</text><text class="kind" x="380" y="59">state &amp; federal support</text>
+        </g>
+        <g class="node external" data-node="institutions" transform="translate(0 -90)" role="button" tabindex="0" aria-label="Labs, research facilities and institutional entities">
+          <rect x="500" y="15" width="160" height="60"/><text x="580" y="39">Labs &amp; institutions</text><text class="kind" x="580" y="58">regulated / CEAS partners</text>
+        </g>
+        <g class="node external" data-node="community" transform="translate(0 105)" role="button" tabindex="0" aria-label="Residents and community networks">
+          <rect x="0" y="400" width="150" height="60"/><text x="75" y="424">Residents &amp;</text><text x="75" y="443">community networks</text>
+        </g>
+        <g class="node external" data-node="recovery" transform="translate(0 105)" role="button" tabindex="0" aria-label="Human services and community recovery partners">
+          <rect x="610" y="400" width="150" height="60"/><text x="685" y="424">Recovery &amp;</text><text x="685" y="443">human services</text>
+        </g>
+      </svg>
+      <div class="legend"><span class="key"><span class="swatch"></span>documented EPAC coordination</span><span class="key"><span class="swatch dash"></span>broader planning / support relationship</span></div>
+      <div class="note">Public-source synthesis; dashed links indicate relationships documented in broader city plans or adjacent public-safety programs rather than a formal EPAC reporting line.</div>
+    </div>
+    <section class="card detail" aria-live="polite" aria-label="Selected node details">
+      <h3>EPAC Office</h3>
+      <p>Central coordination node. Emergency Management is a division of EPAC and is led by Deputy Fire Chief Colin Walsh and Lieutenant Christopher Towski.</p>
+      <p><a href="https://www.cambridgema.gov/cfd/firedeptdivisions/epac/emergencymanagement" target="_blank" rel="noreferrer">Emergency Management source</a></p>
+    </section>
+  </div>
+  
+</div>
+
+<footer>Independent educational network map based on the supplied source material. Not an official city website or a live emergency service. Agency links open the original public sources.</footer></main><script>
+    (()=>{const root=document.getElementById('cambridge-em-network');const detail=root.querySelector('.detail');const nodes={
+      epac:['EPAC Office','Central coordination node. Emergency Management is a division of EPAC and is led by Deputy Fire Chief Colin Walsh and Lieutenant Christopher Towski.','https://www.cambridgema.gov/cfd/firedeptdivisions/epac/emergencymanagement','Emergency Management source'],
+      fire:['Cambridge Fire Department','Parent department and operational home for EPAC, with command, suppression, EMS, prevention, and technical-rescue functions.','https://www.cambridgema.gov/cfd/firedeptdivisions','Fire Department divisions'],
+      police:['Cambridge Police Department','EPAC publicly identifies Cambridge Police as a partner for emergency-planning and response coordination.','https://www.cambridgema.gov/cfd/firedeptdivisions/epac','EPAC functions'],
+      'public-health':['Cambridge Public Health Department','EPAC publicly identifies Public Health as a close planning and response partner, especially for hazardous-materials and health emergencies.','https://www.cambridgema.gov/cfd/firedeptdivisions/epac','EPAC functions'],
+      ecc:['Emergency Communications / 911','The city’s combined emergency communications center coordinates dispatch of police, fire, EMS, and other resources.','https://www.cambridgema.gov/departments/emergencycommunications','Emergency Communications'],
+      dpw:['Public Works Department','EPAC serves as safety officer for household hazardous-waste collection days by DPW; city hazard-mitigation planning also links recovery work with DPW.','https://www.cambridgema.gov/cfd/firedeptdivisions/epac','EPAC functions'],
+      lepc:['Cambridge LEPC','The Local Emergency Planning Committee is chaired by Deputy Chief Colin Walsh and coordinated through EPAC.','https://www.cambridgema.gov/cfd/labrequirements/lepc','LEPC source'],
+      'state-federal':['MEMA / FEMA','State and federal emergency-management support appears in Cambridge’s public emergency-management materials and Fire Department training partnerships.','https://www.cambridgema.gov/cfd/news/2025/04/usarmedicalspecialist','MEMA / FEMA reference'],
+      institutions:['Labs & institutions','EPAC reviews laboratory/research-facility operations and encourages institutional participation in the Corporate Emergency Access System.','https://www.cambridgema.gov/cfd/firedeptdivisions/epac','EPAC functions'],
+      community:['Residents & community networks','Preparedness and public education are part of the office’s mission; city community-response work also includes Fire Department participation.','https://www.cambridgema.gov/Departments/peacecommission/CCRN','Community Response Network'],
+      recovery:['Recovery & human services','A broader city resilience network connects public health, human services, schools, police, emergency communications, and community partners after traumatic events.','https://www.cambridgema.gov/Departments/peacecommission/CCRN','Community Response Network']
+    };function select(id){root.querySelectorAll('.node').forEach(n=>{n.classList.toggle('selected',n.dataset.node===id);n.setAttribute('aria-pressed',String(n.dataset.node===id))});const d=nodes[id];if(!d)return;root.querySelector('#agency').value=id;detail.innerHTML='<h3>'+d[0]+'</h3><p>'+d[1]+'</p><p><a href="'+d[2]+'" target="_blank" rel="noreferrer">'+d[3]+'</a></p>'}root.querySelectorAll('.node').forEach(n=>{n.addEventListener('click',()=>select(n.dataset.node));n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select(n.dataset.node)}})});const picker=root.querySelector('#agency');Object.entries(nodes).forEach(([id,d])=>{const o=document.createElement('option');o.value=id;o.textContent=d[0];picker.append(o)});picker.addEventListener('change',()=>select(picker.value));root.querySelector('#reset').addEventListener('click',()=>select('epac'));select('epac');})();
+  </script></body></html>
