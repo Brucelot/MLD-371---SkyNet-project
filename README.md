@@ -5,7 +5,7 @@ Harvard Kennedy School course project with the Cambridge Fire Department.
 ## Team
 
 - **Team name:** Team Skynet
-- **Members:** Bruce Lotarski, Kevin Curley, John MacLean, and Lou Chugranis
+- **Members:** Bruce Lotarski, John MacLean, and Lou Chugranis
 - **Partner organization:** Cambridge Fire Department, Cambridge, Massachusetts
 
 ## Course milestones
@@ -30,9 +30,11 @@ Harvard Kennedy School course project with the Cambridge Fire Department.
 
 ## Project resources
 
-- [Cambridge Fire Department overview](Cambridge_Fire_Department_Overview.docx)
+- [Cambridge Fire Department overview](02-background-brief/Cambridge_Fire_Department_Overview.docx)
+- [Cambridge Emergency Management Network website](03-midpoint-memo/Cambridge_EM_Network.html)
+- [Interactive ICS process map](03-midpoint-memo/process-map.html)
 - [Emergency management network map](02-background-brief/network-map.html)
-- [Original team and partner project page](Skynet%20-%20Cambridge%20Fire%20Department%20project%20-%20MLD%20371%20-%20AI-Civil%20Society.html)
+- [Original team and partner project page](01-partner/Skynet%20-%20Cambridge%20Fire%20Department%20project%20-%20MLD%20371%20-%20AI-Civil%20Society.html)
 
 ## Images
 
