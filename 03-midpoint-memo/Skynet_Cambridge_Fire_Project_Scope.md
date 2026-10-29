@@ -1,16 +1,22 @@
-# Team Skynet — Cambridge Fire Department Project Scope
+# MLD 371 – Team Skynet
 
-**MLD 371 · Class 9 · October 29, 2026**
+**Cambridge Fire Department | Project Scope and Success Criteria**
 
-## Refined project scope statement
+## Refined Project Scope Statement
 
-The **Cambridge Fire Department Deputy Fire Chief and division leaders** will use an **automatically populated event assignment form** to generate and review personnel assignments by **November 19, 2026**.
+**ChatGPTs input:**
 
-We will know it worked when the **Deputy Fire Chief successfully tests the form with division leaders**, verifies the accuracy of personnel assignments, and confirms its usability for operational planning.
+The Cambridge Fire Department Deputy Fire Chief and division leaders will use an automatically populated event assignment form to generate and review personnel assignments; and test the generated form with an event by November 19, 2026.
 
-## Alignment with the Class 9 framework
+**SkyNet’s original wording:**
 
-| Requirement | Team Skynet's objective |
+The Cambridge Fire Department will use an auto populated form for event assignments which includes the assignment list of personnel by Nov 19, 2026. We will know when it worked when the Deputy Fire Chief can test it with his division leaders.
+
+We will know it worked when the Deputy Fire Chief successfully tests the form with division leaders, verifies the accuracy of personnel assignments, and confirms its usability for operational planning.
+
+## Alignment with the Class 9 Framework
+
+| Requirement | Team Skynet Objective |
 | --- | --- |
 | Who | Deputy Fire Chief and division leaders |
 | One thing | Auto-populated event assignment form |
