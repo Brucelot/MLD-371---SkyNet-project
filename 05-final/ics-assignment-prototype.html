@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Fictional ICS 203 and ICS 204 event assignment prototype for evaluation.">
+<title>SkyNet | ICS Assignment Prototype</title>
+<style>
+:root{--navy:#102a43;--blue:#155e91;--pale:#eef5fa;--ink:#192b3a;--muted:#5d6c79;--line:#d2dce4;--gold:#fff5d8;--red:#9d2929;--green:#176341}
+*{box-sizing:border-box}body{margin:0;background:#f3f6f8;color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}header{background:var(--navy);color:white;padding:24px max(20px,calc((100vw - 1180px)/2))}header h1{font-size:clamp(1.5rem,3vw,2.2rem);margin:3px 0}header p{margin:5px 0 0;color:#d8e8f3}.wrap{max-width:1180px;margin:auto;padding:22px 18px 60px}.notice{background:var(--gold);border:1px solid #e2c879;padding:12px 15px;border-radius:8px;margin:0 0 18px}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:18px}.toolbar button,.add-btn{border:0;border-radius:6px;background:var(--blue);color:white;font-weight:700;padding:10px 14px;cursor:pointer}.toolbar button.secondary{background:#e5edf3;color:var(--navy);border:1px solid var(--line)}button:hover{filter:brightness(.95)}.card{background:white;border:1px solid var(--line);border-radius:10px;padding:18px;margin:14px 0;box-shadow:0 2px 8px #102a4310}.card h2{font-size:1.15rem;color:var(--navy);margin:0 0 14px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:4px}.field.wide{grid-column:span 2}.field.full{grid-column:1/-1}label{font-size:.8rem;font-weight:750;color:#41586b}input,select,textarea{font:inherit;color:var(--ink);border:1px solid #aab8c4;border-radius:5px;padding:8px 9px;min-width:0;background:white}textarea{min-height:58px;resize:vertical}.help{font-size:.78rem;color:var(--muted)}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:720px}th,td{text-align:left;padding:9px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--navy);font-size:.78rem;background:#f5f8fa}td input{width:100%}.assignment{border:1px solid var(--line);border-radius:8px;margin:12px 0;overflow:hidden}.assignment-head{background:var(--pale);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px}.assignment-head strong{color:var(--navy)}.assignment-body{padding:14px}.remove{border:1px solid #c88;color:#8a2222;background:white;border-radius:5px;padding:5px 8px;cursor:pointer}.validation{border-left:4px solid #a87300;background:#fff9e8;padding:12px 14px;border-radius:4px;margin:14px 0}.validation.ok{border-color:var(--green);background:#eff9f3}.validation ul{margin:7px 0 0;padding-left:20px}.validation li{margin:3px 0}.review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.rating{display:flex;gap:8px;align-items:center}.rating select{max-width:100%}.small{font-size:.82rem;color:var(--muted)}.footer{color:var(--muted);font-size:.8rem;margin-top:18px}.print-only{display:none}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.review-grid{grid-template-columns:1fr}}
+@media(max-width:460px){.grid{grid-template-columns:1fr}.field.wide{grid-column:span 1}.assignment-head{align-items:flex-start}}
+@media print{body{background:white;font-size:10pt}.wrap{max-width:none;padding:0}header{background:white;color:#111;padding:0 0 12px;border-bottom:2px solid #222}header p{color:#333}.notice,.toolbar,.review-card,.remove,.add-btn,.help,.footer{display:none!important}.card,.assignment{box-shadow:none;break-inside:avoid;border-color:#777}.card{padding:10px;margin:8px 0}.assignment-body{padding:8px}.assignment-head{background:#eee}.grid{gap:5px}input,select,textarea{border:0;padding:0;appearance:none;font-size:9pt}textarea{min-height:auto}label{color:#222}.print-only{display:block}.assignment{break-inside:avoid} }
+</style>
+</head>
+<body>
+<header><div><div style="font-size:.75rem;letter-spacing:.12em;text-transform:uppercase">Team SkyNet · MLD 371 · Prototype for review</div><h1>ICS Event Personnel Assignment Form</h1><p>ICS 203 organization list + ICS 204 assignment sheets</p></div></header>
+<main class="wrap">
+<div class="notice"><strong>Fictional test data — not an operational plan.</strong> “Cambridge Community Resilience Fair” and all people, agencies, contacts, times, and assignments below are invented for usability testing. Do not use for real response or deployment.</div>
+<div class="toolbar"><button id="loadSample">Load sample event</button><button id="addAssignment">Add ICS 204 assignment</button><button id="checkBtn">Validate assignments</button><button id="printBtn">Print / save as PDF</button><button class="secondary" id="resetBtn">Clear saved edits</button></div>
+<div id="validation" class="validation" role="status" aria-live="polite">Review the required fields, then choose <strong>Validate assignments</strong>.</div>
+<section class="card"><h2>Event information · ICS 203 / ICS 204 header</h2><div class="grid">
+<div class="field wide"><label for="incidentName">Incident / event name *</label><input id="incidentName" data-key="incidentName"></div>
+<div class="field"><label for="incidentNo">Incident number *</label><input id="incidentNo" data-key="incidentNo"></div>
+<div class="field"><label for="operationalPeriod">Operational period *</label><input id="operationalPeriod" data-key="operationalPeriod"></div>
+<div class="field"><label for="start">Period start *</label><input id="start" type="datetime-local" data-key="start"></div>
+<div class="field"><label for="end">Period end *</label><input id="end" type="datetime-local" data-key="end"></div>
+<div class="field wide"><label for="location">Event location *</label><input id="location" data-key="location"></div>
+<div class="field"><label for="preparedBy">Prepared by</label><input id="preparedBy" data-key="preparedBy"></div>
+<div class="field"><label for="approvedBy">Approved by</label><input id="approvedBy" data-key="approvedBy"></div>
+</div><p class="help">Fields marked * are required. Period dates and times should match the event window.</p></section>
+<section class="card"><h2>ICS 203 · Organization assignment list</h2><p class="small">Command and General Staff show the organization structure and who holds each role. Edit rows to check whether the generated roster matches the intended organization.</p><div class="table-wrap"><table><thead><tr><th>ICS position</th><th>Name (fictional)</th><th>Agency / organization</th><th>Contact / radio identifier</th></tr></thead><tbody id="orgRows"></tbody></table></div><button class="add-btn" id="addOrg">Add ICS 203 position</button></section>
+<section class="card"><h2>ICS 204 · Event personnel assignments</h2><p class="small">Each sheet captures the responsible supervisor, assigned people/resources, work, reporting details, period, special instructions, and communications reference.</p><div id="assignments"></div></section>
+<section class="card review-card"><h2>Evaluator check · Deputy Fire Chief and division leaders</h2><p class="small">Use this checklist during a sample-event walkthrough. Ratings and notes stay in this browser; they are not sent anywhere.</p><div class="review-grid">
+<div class="field"><label for="accuracy">Assignment accuracy</label><select id="accuracy" data-key="accuracy"><option value="">Choose rating</option><option>1 — Not accurate</option><option>2 — Needs major correction</option><option>3 — Usable with some corrections</option><option>4 — Accurate</option><option>5 — Accurate and complete</option></select></div>
+<div class="field"><label for="usability">Ease of use</label><select id="usability" data-key="usability"><option value="">Choose rating</option><option>1 — Difficult</option><option>2 — Needs major changes</option><option>3 — Adequate</option><option>4 — Easy</option><option>5 — Very easy</option></select></div>
+<div class="field"><label for="printReview">Print / sheet readability</label><select id="printReview" data-key="printReview"><option value="">Choose rating</option><option>1 — Unusable</option><option>2 — Poor</option><option>3 — Adequate</option><option>4 — Clear</option><option>5 — Very clear</option></select></div>
+<div class="field full"><label for="reviewNotes">Corrections, missing fields, or usability notes</label><textarea id="reviewNotes" data-key="reviewNotes" placeholder="Record errors against the sample roster; note what was hard to find or edit."></textarea></div>
+</div><p class="small">Suggested walkthrough: 1) compare the ICS 203 roster to the sample command structure; 2) trace each role into its ICS 204 sheet; 3) edit one assignment and validate; 4) print or save as PDF; 5) record corrections and ratings. The department should replace fictional rows with an approved test roster before any operational use.</p></section>
+<div class="footer">Prototype only · Browser autosave is local to this device · Sample event date is fictional.</div>
+</main>
+<script>
+(function(){
+const KEY='skynet-ics-prototype-v1';
+const sample={
+incidentName:'Cambridge Community Resilience Fair (Fictional Test)',incidentNo:'TEST-2026-01',operationalPeriod:'November 19, 2026 · 09:00–15:00',start:'2026-11-19T09:00',end:'2026-11-19T15:00',location:'Fictional Community Green, Cambridge, MA',preparedBy:'Jordan Lee (fictional)',approvedBy:'Casey Morgan (fictional)',
+org:[
+{position:'Incident Commander',name:'Casey Morgan',agency:'Fictional Cambridge Fire Department',contact:'Command 1'},
+{position:'Deputy Incident Commander',name:'Riley Chen',agency:'Fictional Cambridge Fire Department',contact:'Command 2'},
+{position:'Safety Officer',name:'Avery Patel',agency:'Fictional Cambridge Fire Department',contact:'Safety 1'},
+{position:'Liaison Officer',name:'Taylor Brooks',agency:'Fictional Community Partners',contact:'Liaison 1'},
+{position:'Operations Section Chief',name:'Morgan Diaz',agency:'Fictional Cambridge Fire Department',contact:'Operations 1'},
+{position:'Planning Section Chief',name:'Jamie Reed',agency:'Fictional Cambridge Fire Department',contact:'Planning 1'},
+{position:'Logistics Section Chief',name:'Quinn Ellis',agency:'Fictional Cambridge Fire Department',contact:'Logistics 1'},
+{position:'Finance / Administration Section Chief',name:'Drew Parker',agency:'Fictional Cambridge Fire Department',contact:'Admin 1'}
+],
+assignments:[
+{division:'Visitor Welcome Group',supervisor:'Morgan Diaz',reporting:'Fictional Community Green · Welcome tent',period:'09:00–15:00',work:'Staff the welcome point, share the event map, and direct visitors to the information and accessibility desks.',people:'Sam Rivera — Team Lead; Alex Kim; Robin Ellis',resources:'3 staff; 1 information table; printed maps',instructions:'Use the accessible route shown on the event map. Refer safety concerns to the Safety Officer.',communications:'Operations 1; report urgent safety concerns to Command 1'},
+{division:'Accessibility and Family Support Group',supervisor:'Jamie Reed',reporting:'Fictional Community Green · Information tent',period:'09:00–15:00',work:'Answer accessibility questions, help visitors locate event services, and track requests for assistance for the planning team.',people:'Cameron Blake — Team Lead; Skylar Moore',resources:'2 staff; site map; request log',instructions:'Do not collect unnecessary personal information. Escalate urgent needs to the supervisor.',communications:'Planning 1; supervisor via Operations 1'},
+{division:'Site Services Group',supervisor:'Quinn Ellis',reporting:'Fictional Community Green · Service area',period:'08:30–15:30',work:'Coordinate setup checks, replenish common supplies, and relay facilities issues to the Logistics Section Chief.',people:'Emerson Gray — Team Lead; Finley Ward; Harper Lane',resources:'3 staff; supply checklist; general supplies',instructions:'Record unresolved service issues for the end-of-period handoff.',communications:'Logistics 1; supervisor via Operations 1'}
+],
+accuracy:'',usability:'',printReview:'',reviewNotes:''
+};
+let state=load()||structuredClone(sample);
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function safe(v){return String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function field(label,key,value,wide){return '<div class="field '+(wide?'wide':'')+'"><label>'+label+'</label><input data-a="'+key+'" value="'+safe(value)+'"></div>'}
+function area(label,key,value){return '<div class="field wide"><label>'+label+'</label><textarea data-a="'+key+'">'+safe(value)+'</textarea></div>'}
+function renderOrg(){document.getElementById('orgRows').innerHTML=state.org.map((r,i)=>'<tr><td><input aria-label="ICS position" data-org="'+i+'" data-key="position" value="'+safe(r.position)+'"></td><td><input aria-label="Name" data-org="'+i+'" data-key="name" value="'+safe(r.name)+'"></td><td><input aria-label="Agency" data-org="'+i+'" data-key="agency" value="'+safe(r.agency)+'"></td><td><input aria-label="Contact" data-org="'+i+'" data-key="contact" value="'+safe(r.contact)+'"></td></tr>').join('')}
+function renderAssignments(){document.getElementById('assignments').innerHTML=state.assignments.map((a,i)=>'<article class="assignment"><div class="assignment-head"><strong>ICS 204 · '+safe(a.division||'New assignment')+'</strong><button class="remove" data-remove="'+i+'" type="button">Remove sheet</button></div><div class="assignment-body"><div class="grid">'+field('Branch / division / group *','division',a.division,true)+field('Supervisor *','supervisor',a.supervisor)+field('Reporting location *','reporting',a.reporting,true)+field('Operational period *','period',a.period)+area('Work assignment *','work',a.work)+area('Assigned personnel (fictional names) *','people',a.people)+area('Resources','resources',a.resources)+area('Special instructions','instructions',a.instructions)+area('Communications / contact','communications',a.communications)+'</div></div></article>').join('')}
+function render(){for(const el of document.querySelectorAll('[data-key]')){if(el.dataset.key in state)el.value=state[el.dataset.key]||''}renderOrg();renderAssignments()}
+function load(){try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}}
+function collect(){document.querySelectorAll('[data-key]').forEach(el=>state[el.dataset.key]=el.value);document.querySelectorAll('[data-org]').forEach(el=>state.org[+el.dataset.org][el.dataset.key]=el.value);document.querySelectorAll('[data-a]').forEach(el=>{const card=el.closest('.assignment');const i=[...document.querySelectorAll('.assignment')].indexOf(card);if(i>=0)state.assignments[i][el.dataset.a]=el.value});save()}
+function validate(){collect();const issues=[];['incidentName','incidentNo','operationalPeriod','start','end','location'].forEach(k=>{if(!state[k]||!state[k].trim())issues.push('Complete required event field: '+({incidentName:'event name',incidentNo:'incident number',operationalPeriod:'operational period',start:'period start',end:'period end',location:'event location'}[k])+'.')});if(state.start&&state.end&&new Date(state.start)>=new Date(state.end))issues.push('Period end must be after period start.');if(state.org.length===0)issues.push('Add at least one ICS 203 position.');state.org.forEach((r,i)=>{if(!r.position.trim()||!r.name.trim())issues.push('ICS 203 row '+(i+1)+': position and name are required.')});if(state.assignments.length===0)issues.push('Add at least one ICS 204 assignment.');state.assignments.forEach((a,i)=>{['division','supervisor','reporting','period','work','people'].forEach(k=>{if(!a[k]||!a[k].trim())issues.push('ICS 204 sheet '+(i+1)+': complete '+({division:'division/group',supervisor:'supervisor',reporting:'reporting location',period:'operational period',work:'work assignment',people:'assigned personnel'}[k])+'.')})});const box=document.getElementById('validation');box.className='validation'+(issues.length?'':' ok');box.innerHTML=issues.length?'<strong>'+issues.length+' item(s) to review</strong><ul>'+issues.map(x=>'<li>'+safe(x)+'</li>').join('')+'</ul>':'<strong>Required-field check passed.</strong> Confirm that roles, names, periods, and work assignments are factually accurate for the event; this check does not verify operational correctness.';return !issues.length}
+document.addEventListener('input',e=>{if(e.target.matches('[data-key],[data-org],[data-a]'))collect()});
+document.getElementById('loadSample').onclick=()=>{state=structuredClone(sample);render();save();validate()};
+document.getElementById('addAssignment').onclick=()=>{collect();state.assignments.push({division:'',supervisor:'',reporting:'',period:'',work:'',people:'',resources:'',instructions:'',communications:''});renderAssignments();save()};
+document.getElementById('addOrg').onclick=()=>{collect();state.org.push({position:'',name:'',agency:'',contact:''});renderOrg();save()};
+document.getElementById('checkBtn').onclick=validate;
+document.getElementById('printBtn').onclick=()=>{collect();validate();window.print()};
+document.getElementById('resetBtn').onclick=()=>{localStorage.removeItem(KEY);state=structuredClone(sample);render();validate()};
+document.getElementById('assignments').addEventListener('click',e=>{const b=e.target.closest('[data-remove]');if(b){collect();state.assignments.splice(+b.dataset.remove,1);renderAssignments();save();validate()}});
+render();
+})();
+</script>
+</body>
+</html>
