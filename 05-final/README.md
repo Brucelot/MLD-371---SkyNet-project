@@ -1,9 +1,9 @@
 # Final deliverables
 
-## Updated files — November 15, 2026
+## Updated files — November 17, 2026
 
 - [Final presentation](SkyNet_CFD_Presentation_Final.pptx)
-- [Website HTML](SKYNET_7.html)
+- [Website HTML](SKYNET_8.html)
 - [ICS operations assignment Word form](CFD_%20ICS204_Ops_Assign.doc)
 - [Fillable ICS PDF](CFD_ICS_Fillable.pdf)
 - [Published planning website](https://cfd-skynet-event-planning.brucelot.chatgpt.site) — uses the existing shared password.
